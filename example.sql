@@ -68,21 +68,50 @@ INSERT INTO `company`.`salaries`
 `from_date`,
 `to_date`)
 VALUES
-(10,
-1000000,
-'2012-04-05',
-'2018-04-04');
+(1,
+3000000,
+'2014-04-04',
+'2016-04-04');
 
 
 -- select to table salaries
 select * from salaries;
-select emp_no,salary from salaries;
+select emp_no,from_date from salaries;
+select * from employees;
 
 -- select with where clause
 select emp_no,first_name,last_name from employees where emp_no > 1;
 select first_name,last_name,hire_date from employees where hire_date < '2018-01-01';
 select * from employees;
 
+-- desc table
+desc employees;
+
+select * from salaries;
+select * from employees;
+-- join 
+select * from employees e left join salaries s on e.emp_no = s.emp_no;
+select e.emp_no,e.first_name,e.last_name,s.salary,s.from_date from employees  e
+inner join salaries s 
+on e.emp_no = s.emp_no;
+
+-- order by example 
+select e.emp_no,e.first_name,s.salary,s.from_date,s.to_date from employees e,salaries s 
+where e.emp_no = s.emp_no  order by s.from_date ;
+
+-- sum example
+select sum(salary) from salaries where emp_no =1;
+select avg(salary) from salaries where emp_no =1;
+
+-- alter table 
+ALTER TABLE salaries ADD COLUMN test INT DEFAULT 100;
+
+-- where clause
+select * from employees 
+where (last_name = 'hakim' or last_name = 'juki') 
+and hire_date > '2000-12-12';
+
+select * from employees;
 
 
 
